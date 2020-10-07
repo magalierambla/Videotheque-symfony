@@ -1,0 +1,35 @@
+{{ form_start(form, {'attr': {'class': ''}}) }}
+	
+
+	 <div class="form-group">
+	    {{ form_label(form.title, 'Le titre de votre film') }}
+		{{ form_widget(form.title, {'attr': {'class':'form-control','placeholder': 'Titre de film'}}) }}
+		
+		<span class="error">{{ form_errors(form.title) }}</span>
+	</div>
+
+	 <div class="form-group">
+	    {{ form_label(form.resume, 'Le resume de votre film') }}
+		{{ form_widget(form.resume, {'attr': {'class':'form-control','placeholder': 'Resume de film'}}) }}
+		
+		<span class="error">{{ form_errors(form.resume) }}</span>
+	</div>
+
+	<div class="form-group">
+		{{ form_widget(form.categories) }}
+		{{ form_label(form.categories, 'Choisissez un ou plusieurs catégories') }}
+	</div>
+
+	 <div class="form-group">
+
+	  
+		{{ form_widget(form.picture) }}
+	</div>
+
+
+	 <div class="form-group">
+		<input type="submit" name="" value="Enregistrer" class="btn btn-primary">
+	</div>
+
+	
+{{ form_end(form) }}

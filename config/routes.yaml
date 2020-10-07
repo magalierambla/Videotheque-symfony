@@ -1,0 +1,51 @@
+# This file is the entry point to configure your own HTTP routes.
+# Files in the routes/ subdirectory configure the routes for your dependencies.
+
+index:
+    path: /
+    defaults: { _controller: 'App\Controller\AccueilController::index' }
+
+listing_films:    
+    path: /films
+    defaults: { _controller: 'App\Controller\FilmsController::index' }  
+    
+film_show:
+  path: /films/show/{id}
+  controller: App\Controller\FilmsController::show 
+
+film_edit:
+  path: /films/edit/{id}
+  controller: App\Controller\FilmsController::edit   
+  
+  
+film_remove:
+  path: /films/delete/{id}
+  controller: App\Controller\FilmsController::delete 
+  
+film_add:
+  path: /films/add
+  controller: App\Controller\FilmsController::add  
+
+login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+
+homepage:
+  path: /show_profil
+  defaults: { _controller: 'App\Controller\UserController::showProfil' }  
+
+admin:
+  path: /admin
+  controller: App\Controller\FilmsController::admin  
+ 
+listing_users:
+  path: /admin/users
+  controller: App\Controller\UserController::index
+  
+remove_user:
+  path: /admin/user/delete/{id}
+  controller: App\Controller\UserController::deleteUser
+
+changeLocale: 
+    path: /{locale}
+    defaults: { _controller: 'App\Controller\AccueilController::changeLocale' } 

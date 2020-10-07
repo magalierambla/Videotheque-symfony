@@ -1,0 +1,68 @@
+
+{{ form_start(registrationForm, {'attr': {'class': ''}}) }}
+
+           <div class="form-group">
+
+                <label for="titre">Email</label>
+
+                 <input type="email" id="registration_form_email" name="registration_form[email]" required="required" placeholder="Adresse email" class="form-control" />
+
+				
+                 {% if form_errors(registrationForm.email) %}
+
+                   <div class="label label-danger">{{ form_errors(registrationForm.email) }}</div>
+
+                  {% endif %}   
+               
+           </div>
+
+           <div class="form-group">
+
+                <label for="titre">Username</label>
+
+                  <input type="text" id="registration_form_username" name="registration_form[username]" required="required" placeholder="Nom d&#039;utilisateur" class="form-control" />
+
+                  {% if form_errors(registrationForm.username) %}
+
+                   <div class="label label-danger">{{ form_errors(registrationForm.username) }}</div>
+
+                  {% endif %}   				
+               
+           </div>
+
+          <div class="form-group">
+
+                <label for="titre">Password</label>
+
+                <input type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" placeholder="Mot de passe" class="form-control" />
+
+				 {% if form_errors(registrationForm.plainPassword) %}
+
+                   <div class="label label-danger">{{ form_errors(registrationForm.plainPassword) }}</div>
+
+                 {% endif %}     
+               
+           </div>
+
+
+
+
+          <!--  <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+                {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Adresse email'}}) }}
+                <span class="error">{{ form_errors(registrationForm.email) }}</span>
+            </div>
+            <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+                {{ form_widget(registrationForm.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
+                <span class="error">{{ form_errors(registrationForm.username) }}</span>
+            </div>
+            <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'placeholder': 'Mot de passe'}}) }}
+                <span class="error">{{ form_errors(registrationForm.plainPassword) }}</span>
+            </div>-->
+            <div class="form-group">
+		           <input type="submit" name="" value="M'inscrire" class="btn btn-primary">
+	        </div>
+
+
+{{ form_end(registrationForm) }}
+

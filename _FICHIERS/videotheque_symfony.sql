@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le : mer. 10 mars 2021 à 12:03
--- Version du serveur :  5.7.23-23-log
--- Version de PHP : 7.4.5
+-- Hôte : 127.0.0.1
+-- Généré le : ven. 12 mars 2021 à 07:56
+-- Version du serveur :  10.4.17-MariaDB
+-- Version de PHP : 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `videotheque_Symfony`
+-- Base de données : `videotheque_symfony`
 --
 
 -- --------------------------------------------------------
@@ -31,6 +31,17 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `category`
+--
+
+INSERT INTO `category` (`id`, `label`) VALUES
+(1, 'Horreur'),
+(2, 'SF'),
+(3, 'Documentaire'),
+(4, 'Thriller'),
+(5, 'Comedie');
 
 -- --------------------------------------------------------
 
@@ -51,14 +62,13 @@ CREATE TABLE `film` (
 --
 
 INSERT INTO `film` (`id`, `title`, `resume`, `picture`, `last_update_date`) VALUES
-(2, 'film3', '', NULL, NULL),
-(3, 'film4', 'description4', NULL, NULL),
-(4, 'test1', 'trhhrth', NULL, NULL),
-(5, 'test1', 'trhhrth', NULL, NULL),
-(6, 'test1 252', 'trhhrth', NULL, NULL),
-(7, 'test1 252', 'trhhrth', NULL, NULL),
-(8, 'test1 252   bnklt!lkdr', 'trhhrth', NULL, NULL),
-(9, 'test1 252   bnklt!lkdr', 'trhhrth', NULL, NULL);
+(11, 'Bram Stocker\'s Dracula', 'En 1492, le prince Vlad Dracul, revenant de combattre les armées turques, trouve sa fiancée suicidée. Fou de douleur, il défie Dieu, et devient le comte Dracula, vampire de son état. Quatre cents ans plus tard, désireux de quitter la Transylvanie po', '604b0cad5f45d.jpeg', NULL),
+(12, 'Alien', 'D\'anciens militaires, blessés au combat, mettent au point un casque neurobiologique permettant de contrôler les avions de chasse par la pensée. Mais des explosions se produisent pendant leurs tests et des Aliens paralysent le système nerveux des pilot', '604b0d0242873.jpeg', NULL),
+(13, 'Les Charlots contre Dracula', 'Qui veut posséder les pouvoirs de Dracula doit s\'emparer de la fiole qui renferme l\'élixir magique. Mais tous les \"candidats\" courent le risque d\'être pétrifiés. La femme de Dracula a jeté ce mauvais sort avant de mourir. Une femme, sosie de Madame ', '604b0d3d17b6e.jpeg', NULL),
+(14, 'Dracula vit toujours à Londres', 'Dracula est devenu le leader de messes noires auxquelles adhèrent de riches capitalistes. Aidés de milices, il s\'apprêtent à renverser le pouvoir en Angleterre, en répandant la peste noire. Lorrimer Van Helsing, le descendant d\'Abraham Van Helsing, v', '604b0d70c546f.jpeg', NULL),
+(15, 'Frankenstein', 'Le scientifique aux méthodes radicales Victor Frankenstein et son tout aussi brillant protégé Igor Strausman partagent une vision noble : celle d\'aider l\'humanité à travers leurs recherches innovantes sur l\'immortalité. Mais les expériences de Vict', '604b0d9c1abc8.jpeg', NULL),
+(16, 'Problemos', 'Jeanne et Victor sont deux jeunes parisiens de retour de vacances. En chemin, ils font une halte pour saluer leur ami Jean-Paul, sur la prairie où sa communauté a élu résidence. Le groupe lutte contre la construction d’un parc aquatique sur la derni', '604b0dc94db75.jpeg', NULL),
+(17, 'Shaun of the dead', 'À presque 30 ans, Shaun ne fait pas grand-chose de sa vie. Entre l\'appart qu\'il partage avec ses potes et le temps qu\'il passe avec eux au pub, Liz, sa petite amie, n\'a pas beaucoup de place. Elle qui voudrait que Shaun s\'engage, ne supporte plus de le v', '604b0deeaccdf.jpeg', NULL);
 
 -- --------------------------------------------------------
 
@@ -70,6 +80,23 @@ CREATE TABLE `film_category` (
   `film_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `film_category`
+--
+
+INSERT INTO `film_category` (`film_id`, `category_id`) VALUES
+(11, 1),
+(12, 1),
+(12, 2),
+(13, 1),
+(13, 5),
+(14, 1),
+(15, 1),
+(15, 4),
+(16, 3),
+(16, 5),
+(17, 5);
 
 -- --------------------------------------------------------
 
@@ -90,7 +117,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `username`, `roles`, `password`) VALUES
-(6, 'quicotte@gmail.com', 'quicotte', '[\"ROLE_USER\",\"ROLE_ADMIN\"]', '$2y$13$83IoBxcxK7TsKFT3iF3QNeEW1760cMrQqa9Zm0kUml7gFUyViv/1u');
+(6, 'quicotte@gmail.com', 'quicotte', '[\"ROLE_USER\"]', '$2y$13$83IoBxcxK7TsKFT3iF3QNeEW1760cMrQqa9Zm0kUml7gFUyViv/1u'),
+(7, 'admin@gmail.com', 'admin', '[\"ROLE_USER\",\"ROLE_ADMIN\"]', '$2y$13$KTO.JMYg24BulMbxrqOA7eaeFg7euENKhm7ujCJIwM83xHHdo4Xu6');
 
 --
 -- Index pour les tables déchargées
@@ -132,19 +160,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `film`
 --
 ALTER TABLE `film`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées

@@ -31,7 +31,7 @@ class Film
     private $title;  
     
     /**
-     * @ORM\Column(type="text", length=255)
+     * @ORM\Column(type="text", length=4096)
      * @Assert\NotBlank(message="Ce champ ne peut pas etre vide.")
      */
     private $resume; 
